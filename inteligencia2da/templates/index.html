@@ -1,0 +1,41 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Ferretería</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Análisis de Ferretería</h1>
+            <div class="space-x-4">
+                <a href="/" class="hover:text-blue-200"><i class="fas fa-home"></i> Inicio</a>
+                <a href="/pca" class="hover:text-blue-200"><i class="fas fa-chart-pie"></i> PCA</a>
+                <a href="/bandit" class="hover:text-blue-200"><i class="fas fa-robot"></i> Bandit</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto p-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white rounded-lg shadow-lg p-6 transform hover:scale-105 transition-transform duration-300">
+                <h2 class="text-xl font-bold mb-4"><i class="fas fa-chart-pie text-blue-600"></i> Análisis PCA</h2>
+                <p class="text-gray-600">Explora los patrones de compra mediante el Análisis de Componentes Principales.</p>
+                <a href="/pca" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Ver análisis</a>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 transform hover:scale-105 transition-transform duration-300">
+                <h2 class="text-xl font-bold mb-4"><i class="fas fa-robot text-blue-600"></i> Multi-Armed Bandit</h2>
+                <p class="text-gray-600">Optimiza estrategias de descuento mediante aprendizaje por refuerzo.</p>
+                <a href="/bandit" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Ver análisis</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

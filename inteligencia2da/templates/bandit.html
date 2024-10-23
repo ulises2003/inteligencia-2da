@@ -1,0 +1,128 @@
+<!-- templates/bandit.html -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Armed Bandit - Ferretería</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Navbar igual que index.html -->
+
+    <div class="container mx-auto p-8">
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4">Análisis Multi-Armed Bandit</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Resultados del Experimento</h3>
+                    <div class="bg-green-100 border-l-4 border-green-500 p-4 mb-4">
+                        <p class="font-bold">Mejor descuento encontrado: {{ results.mejor_descuento * 100 }}%</p>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                            <thead class="bg-blue-600 text-white">
+                                <tr>
+                                    <th class="py-2 px-4">Descuento</th>
+                                    <th class="py-2 px-4">Valor Estimado</th>
+                                    <th class="py-2 px-4">Veces Seleccionado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in range(results.descuentos|length) %}
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-<!-- Continuación de templates/bandit.html -->
+                                        <td class=" py-2 px-4">{{ results.descuentos[i] * 100 }}%</td>
+                                    <td class="py-2 px-4">{{ "%.3f"|format(results.valores_estimados[i]) }}</td>
+                                    <td class="py-2 px-4">{{ results.veces_seleccionado[i] }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Evolución del Aprendizaje</h3>
+                    <canvas id="rewardHistory" class="w-full"></canvas>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="text-xl font-semibold mb-4">Interpretación de Resultados</h3>
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>El algoritmo probó diferentes niveles de descuento para maximizar las compras futuras.</li>
+                        <li>Cada descuento fue probado {{ results.veces_seleccionado[0] + results.veces_seleccionado[1]
+                            + results.veces_seleccionado[2] + results.veces_seleccionado[3] +
+                            results.veces_seleccionado[4] }} veces en total.</li>
+                        <li>El descuento óptimo encontrado fue de {{ results.mejor_descuento * 100 }}%, que maximiza la
+                            probabilidad de compras futuras.</li>
+                        <li>La estrategia epsilon-greedy permitió equilibrar la exploración de diferentes descuentos con
+                            la explotación del mejor descuento encontrado.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuración del gráfico de evolución del aprendizaje
+        const ctx = document.getElementById('rewardHistory').getContext('2d');
+        const history = {{ results.history| tojson }};
+
+        const rewards = history.map(h => h.cumulative_reward);
+        const iterations = Array.from({ length: rewards.length }, (_, i) => i + 1);
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: iterations,
+                datasets: [{
+                    label: 'Recompensa Acumulada',
+                    data: rewards,
+                    borderColor: 'rgb(59, 130, 246)',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Evolución de la Recompensa Acumulada'
+                    },
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Iteración'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Recompensa Acumulada'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

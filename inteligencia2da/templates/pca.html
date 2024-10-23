@@ -1,0 +1,56 @@
+<!-- templates/pca.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis PCA - Ferretería</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar igual que index.html -->
+    
+    <div class="container mx-auto p-8">
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4">Análisis de Componentes Principales</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Visualización de Componentes</h3>
+                    <img src="{{ url_for('static', filename=scatter_plot) }}" alt="PCA Scatter Plot" class="w-full rounded-lg shadow">
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Varianza Explicada</h3>
+                    <img src="{{ url_for('static', filename=variance_plot) }}" alt="Variance Plot" class="w-full rounded-lg shadow">
+                </div>
+            </div>
+            
+            <div class="mt-8">
+                <h3 class="text-xl font-semibold mb-4">Pesos de los Componentes</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                        <thead class="bg-blue-600 text-white">
+                            <tr>
+                                <th class="py-2 px-4">Característica</th>
+                                <th class="py-2 px-4">PC1</th>
+                                <th class="py-2 px-4">PC2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for feature, weights in component_weights['PC1'].items() %}
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-2 px-4">{{ feature }}</td>
+                                <td class="py-2 px-4">{{ weights }}</td>
+                                <td class="py-2 px-4">{{ component_weights['PC2'][feature] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

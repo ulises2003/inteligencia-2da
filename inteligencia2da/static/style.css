@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #2e9ae6;
+    font-size: 18px;
+    border: 1px solid #2e9ae6;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+ul li a:hover {
+    background-color: #2e9ae6;
+    color: #fff;
+}
+
+a {
+    color: #2e9ae6;
+}
