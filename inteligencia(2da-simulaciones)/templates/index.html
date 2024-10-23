@@ -1,0 +1,130 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            transition: transform 0.2s;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-large {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #0d6efd;
+        }
+
+        .feature-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #0d6efd;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-robot me-2"></i>
+                Modelos
+            </a>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 mb-3">MODELOS PCA Y MULTI-ARMED BANDIT</h1>
+            <p class="lead text-muted">Explora conceptos sombre los modelos de PCA Y MULTI-ARMED BANDIT a través de simulaciones interactivas</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-chart-pie icon-large"></i>
+                        <h3 class="card-title">Análisis de Componentes Principales (PCA)</h3>
+                        <p class="card-text mb-4">Explora la reducción de dimensionalidad con el dataset Iris</p>
+                        <ul class="feature-list text-start mb-4">
+                            <li>Visualización interactiva de componentes principales</li>
+                            <li>Análisis de varianza explicada</li>
+                            <li>Biplot de características</li>
+                            <li>Selección dinámica de features</li>
+                        </ul>
+                        <a href="/pca" class="btn btn-primary btn-lg">
+                            <i class="fas fa-play me-2"></i>
+                            Explorar PCA
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-dice icon-large"></i>
+                        <h3 class="card-title">Multi-Armed Bandit</h3>
+                        <p class="card-text mb-4">Experimenta con algoritmos de aprendizaje por refuerzo</p>
+                        <ul class="feature-list text-start mb-4">
+                            <li>Simulación en tiempo real</li>
+                            <li>Visualización de estadísticas</li>
+                            <li>Historial de jugadas</li>
+                            <li>Análisis de rendimiento</li>
+                        </ul>
+                        <a href="/bandit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-play me-2"></i>
+                            Probar Bandit
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="text-muted mb-0">
+                <i class="fas fa-code me-2"></i>
+                Desarrollado con fines educativos <span class="text-primary">|</span> 
+                <strong>Joel Cusi Ronco</strong> <span class="text-muted">-</span> 
+                <strong>Mendoza Choquehuillca Ulises Valenty</strong> <span class="text-muted">-</span> 
+                <strong>Huarachi Pumachapi Juan Alberto</strong>
+            </p>
+            <p class="text-muted mb-0">
+                <small>© 2024 Todos los derechos reservados</small>
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
+
